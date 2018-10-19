@@ -1,3 +1,5 @@
 *.pyc
 *.log
-
+*.bam
+*.bai
+tests/__pycache__
