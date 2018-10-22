@@ -73,7 +73,7 @@ def getGenoTypeInfobyFreebayes(bam,hotspot_bed):
     return hotspot_GT
 
 def hotcheck(bam,hotspot_bed):
-    hotspot_GT = getGenoTypeInfobySambamba(bam,hotspot_bed)
-    #hotspot_GT = getGenoTypeInfobyFreebayes(bam,hotspot_bed)
+    #hotspot_GT = getGenoTypeInfobySambamba(bam,hotspot_bed)
+    hotspot_GT = getGenoTypeInfobyFreebayes(bam,hotspot_bed)
     return hotspot_GT
 
