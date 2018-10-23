@@ -6,7 +6,7 @@ bam = "data/T3.sorted.bam"
 hot = "data/yigan.bed"
 
 def test_hotcheck():
-    hotcheck(bam,hot)
+    hotcheck(bam,hot,method="sambamba",outdir="NA")
 
 
 if __name__ == "__main__":
