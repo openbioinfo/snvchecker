@@ -2,11 +2,11 @@ import sys
 sys.path.append("../")
 from snvchecker.hotcheck.hotcheck import hotcheck
 
-bam = "data/T3.sorted.bam"
-hot = "data/yigan.bed"
+bam = "data/test.sorted.bam"
+riskinfo = "data/test_RiskInfo.tsv"
 
 def test_hotcheck():
-    hotcheck(bam,hot,method="sambamba",outdir="NA")
+    hotcheck(bam,riskinfo,method="sambamba")
 
 
 if __name__ == "__main__":
