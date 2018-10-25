@@ -9,9 +9,11 @@ JudgeGTFreqCutoff = {
 
 def prepareBedFile(RiskSiteInfoFile, outdir):
     """ Extract position infomation in bed file from Risk Info table, use for following genotype calling
+    
     Args:
         RiskSiteInfoFile: str, path of Risk Info table file, include following infomation: chrom, start, end, ref, alt
         outdir: str, folder path for output hotspot bed file
+    
     Returns:
         hotspot_file_path: path str of hotspot bed file
     """
@@ -46,9 +48,11 @@ def prepareBedFile(RiskSiteInfoFile, outdir):
 def parseDPfile(AlleleDP, hotspot_bed):
     """
     parse info from sambamba output, and convert to need data(dp, freq, gt) with uniform format
+    
     Args:
          AlleleDP:    dict     : { tuple[chr,pos] => list[A_dp, C_dp, G_dp, T_dp]  }
          hotspot_bed: bed file : chrom start end ref_allele alt_allele
+    
     Returns:
         hotspot_GT:  dict      : { tuple[chr,start,end,ref,alt] => list[dp, ao, ref, freq, gt] }
 
@@ -93,11 +97,13 @@ def parseDPfile(AlleleDP, hotspot_bed):
 def getGenoTypeInfobySambamba(bam, hotspot_bed, prefix, outdir):
     """
     get genoType by Sambamba
+
     Args:
         bam: indexed bamfile
         hotspot_bed: bed file : chrom start end ref_allele [alt_allele]
         prefix: prefix for sambamba outfile
         outdir: outdir for sambamba outfile
+
     Returns:
         hotspot_GT:   dict      : { tuple[chr,start,end,ref,alt] => list[dp, ao, ref, freq, gt] }
 
@@ -124,12 +130,14 @@ def getGenoTypeInfobySambamba(bam, hotspot_bed, prefix, outdir):
 def getGenoTypeInfobyFreebayes(bam, hotspot_bed, prefix, outdir, reference):
     """
     get genoType by Freebayes
+
     Args:
         bam: indexed bamfile
         hotspot_bed: bed file : chrom start end ref_allele [alt_allele]
         prefix: prefix for Freebayes vcf outfile
         outdir: outdir for Freebayes vcf outfile
         reference: reference fasta file
+
     Returns:
         hotspot_GT:   dict      : { tuple[chr,start,end,ref,alt] => list[dp, ao, ref, freq, gt] }
     """
@@ -185,6 +193,7 @@ def getGenoTypeInfobyFreebayes(bam, hotspot_bed, prefix, outdir, reference):
 def hotcheck(bam,risk_info_table, method = "sambamba", prefix = 1, outdir = 1, reference = "/1_disk/ref/grch37.fa"):
     """
     get genoType by Freebayes/Sambamba
+
     Args:
         bam: indexed bamfile
         hotspot_bed: bed file : chrom start end ref_allele [alt_allele]
@@ -192,6 +201,7 @@ def hotcheck(bam,risk_info_table, method = "sambamba", prefix = 1, outdir = 1, r
         prefix: prefix for Freebayes vcf outfile: default = 1(auto-detect, first part cut by "."),otherwise use input
         outdir: outdir for Freebayes vcf outfile: default = 1(auto-detect, same dir of bamfile), if NA or empty, then /tmp, otherwise use input
         reference: reference fasta file: default = /4_disk/genomes/hg19/hg19.fa
+
     Returns:
         hotspot_GT:   dict      : { tuple[chr,start,end,ref,alt] => list[dp, ao, ref, freq, gt] }
     """
