@@ -62,9 +62,9 @@ optinal args
 - reference
    path for the reference fasta
 - prefix
-  string for the sample id (name)
+   string for the sample id (name)
 - outdir
-  folder path for save output file (genetype output)
+   folder path for save output file (genetype output)
 
 
 RUN
