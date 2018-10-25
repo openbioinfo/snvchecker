@@ -8,12 +8,14 @@ Welcome to SnvChecker's documentation!
 
 Introduction
 ============
+
 SnvChecker is ...
 
 
 Authors
 =========
 .. _authors:
+
     - denglh <denglonghui@venomics.com>
     - kongdeju <kongdeju@genehe.com>
 
@@ -93,9 +95,9 @@ Code
 
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+   :maxdepth: 1
 
+   Guide <index>
    Code Docs <api/modules>
 
 
