@@ -81,13 +81,13 @@ copy and paste to your input yaml file and call script::
 Tests
 =====
 
-check test report `here <http://192.168.1.4700:/dev-tests/SnvChecker/>`_
+check test report `here <http://192.168.1.4700:/dev-tests/SnvChecker/>`
 
 
 Report
-======
+=========
 
-check sample report `here <http://192.168.1.4700:/dev-report/SnvChecker/html/>`_
+check sample report `here <http://192.168.1.4700:/dev-report/SnvChecker/html/>`
 
 
 Code
