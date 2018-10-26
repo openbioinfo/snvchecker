@@ -1,4 +1,5 @@
 from __future__ import division
+import sys
 import os
 
 JudgeGTFreqCutoff = {
@@ -108,6 +109,12 @@ def getGenoTypeInfobySambamba(bam, hotspot_bed, prefix, outdir):
         hotspot_GT:   dict      : { tuple[chr,start,end,ref,alt] => list[dp, ao, ref, freq, gt] }
 
     """
+    if not os.path.exists(bam + ".bai"):
+        try:
+            os.system("samtools index {bam}".format(bam = bam))
+            print >> sys.stderr, "[LOG] generated index for %s" %bam
+        except:
+            raise IOError("[ERR] Absent bam index file for %s and cannot generate by this program." %bam )
     sambamba_out = "%s/%s.sambamba.dp" %(outdir, prefix)
     os.system("sambamba depth base --nthreads 4 --min-coverage 1 --regions {region} -o {outfile} --min-base-quality 20  {bam}".format(
                                               region = hotspot_bed, 
@@ -145,6 +152,7 @@ def getGenoTypeInfobyFreebayes(bam, hotspot_bed, prefix, outdir, reference):
     if not os.path.exists(bam + ".bai"):
         try:
             os.system("samtools index {bam}".format(bam = bam))
+            print >> sys.stderr, "[LOG] generated index for %s" %bam
         except:
             raise IOError("[ERR] Absent bam index file for %s and cannot generate by this program." %bam )
     os.system("freebayes --fasta-reference {reference} --vcf {outfile} --targets {region} --min-base-quality 20  --min-alternate-count 1 -F 0.005 --use-duplicate-reads --pooled-continuous --report-monomorphic --no-mnps --no-complex {bam}".format(
@@ -190,7 +198,7 @@ def getGenoTypeInfobyFreebayes(bam, hotspot_bed, prefix, outdir, reference):
 
 
 
-def hotcheck(bam,risk_info_table, method = "sambamba", prefix = 1, outdir = 1, reference = "/1_disk/ref/grch37.fa"):
+def hotcheck(bam,risk_info_table, method, prefix, outdir, reference):
     """
     get genoType by Freebayes/Sambamba
 
@@ -205,13 +213,6 @@ def hotcheck(bam,risk_info_table, method = "sambamba", prefix = 1, outdir = 1, r
     Returns:
         hotspot_GT:   dict      : { tuple[chr,start,end,ref,alt] => list[dp, ao, ref, freq, gt] }
     """
-    if prefix == 1:
-        prefix = os.path.basename(bam).split(".")[0]
-    if outdir == 1:
-        outdir = os.path.dirname(os.path.realpath(bam))
-    elif outdir == "" or outdir == "NA":
-        outdir = "/tmp"
-
     hotspot_bed = prepareBedFile(risk_info_table, outdir)
 
     if method == "sambamba":

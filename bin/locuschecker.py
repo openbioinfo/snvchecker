@@ -42,5 +42,11 @@ if __name__ == "__main__":
     prefix           =   args['--prefix']
     outdir           =   args['--outdir']
     reference        =   args['--reference']
+    if prefix == 1:
+        prefix = os.path.basename(bamfile).split(".")[0]
+    if outdir == 1 or  outdir == "1":
+        outdir = os.path.dirname(os.path.realpath(bamfile))
+    elif outdir == "" or outdir == "NA":
+        outdir = "/tmp"
     main(risk_info_table, bamfile, method, prefix, outdir, reference)
 
