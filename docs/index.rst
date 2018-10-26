@@ -9,7 +9,7 @@ Welcome to SnvChecker's documentation!
 Introduction
 ============
 
-SnvChecker is ...
+SnvChecker is an extension tool to call genotype for suscep sites, and will be firstly used in yigan pipeline & project.
 
 
 Authors
@@ -17,7 +17,7 @@ Authors
 .. _authors:
 
     - denglh <denglonghui@venomics.com>
-    - kongdeju <kongdeju@genehe.com>
+    - kongdeju <kongdeju@venomics.com>
 
 Status
 ======
@@ -43,7 +43,6 @@ just type command::
     /path/to/locuschecker.py.py -h
 
 
-developments followed by ``Dcer`` rules, script will need a yaml file,which shoud contain following key and values
 
 must_args
 ---------
@@ -68,18 +67,20 @@ optinal args
 
 
 RUN
-=====
+========
 
-cli way
+client way
 -------
 
-copy and paste to your input yaml file and call script::
+prepare requirement files and call script::
 
-    /path/of/locuschecker.py freebayes -r <reference> -v <variants>  [-o <output>]  [-p prefix] <bam>
-    /path/of/locuschecker.py sambamba [-r <reference>] -v <variants>  [-o <output>]  [-p prefix] <bam>
+    /path/of/locuschecker.py freebayes -r <reference>   -v <variants>  [-o <output>]  [-p prefix] <bam>
+    /path/of/locuschecker.py sambamba  [-r <reference>] -v <variants>  [-o <output>]  [-p prefix] <bam>
+
+
 
 Tests
-=====
+=========
 
 check test report `here <http://192.168.1.4700:/dev-tests/SnvChecker/>`
 
